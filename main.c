@@ -39,7 +39,6 @@ int main() {
 
 
 
-
     printf("\n %i",consulta_ArvBin(arvore, 3));
     printf("\n %d",altura_ArvBin(arvore));
 

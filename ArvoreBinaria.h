@@ -14,3 +14,4 @@ int remove_ArvBin(ArvBin *raiz, int valor);
 struct NO* remove_atual(struct NO* atual);
 int totalNO_ArvBin(ArvBin *raiz);
 struct NO* remove_NO_Iterativo(ArvBin * root, int key);
+
