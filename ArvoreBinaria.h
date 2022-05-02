@@ -12,5 +12,5 @@ int insere_ArvBin(ArvBin * raiz, int valor);
 int consulta_ArvBin(ArvBin * raiz, int valor);
 int remove_ArvBin(ArvBin *raiz, int valor);
 struct NO* remove_atual(struct NO* atual);
-
-struct NO* deleteIterative(ArvBin * root, int key);
+int totalNO_ArvBin(ArvBin *raiz);
+struct NO* remove_NO_Iterativo(ArvBin * root, int key);
