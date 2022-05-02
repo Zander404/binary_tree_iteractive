@@ -20,9 +20,9 @@
 //        imprimir_versao_1(raiz->dir);
 //    }
 //}
-ArvBin* cria_ArvBin (){ //starta um vetor dinamico de memoria para armazenar a arvore binaria.
-    ArvBin* raiz = (ArvBin*) malloc(sizeof(ArvBin));
-    if(raiz != NULL)
+ArvBin* cria_ArvBin () { //starta um vetor dinamico de memoria para armazenar a arvore binaria.
+    ArvBin *raiz = (ArvBin *) malloc(sizeof(ArvBin));
+    if (raiz != NULL)
         *raiz = NULL;
     return raiz;
 }
@@ -164,19 +164,24 @@ int remove_ArvBin(ArvBin *raiz, int valor) {
     struct NO* ant = NULL;
     struct NO* atual = *raiz;
     while (atual != NULL) {
-        if (valor == atual->info)
-            *raiz = remove_atual(atual);
-        else {
-            if (ant->dir == atual)
-                ant->dir = remove_atual(atual);
+        if(valor == atual->info){
+            if(atual == *raiz)
+                *raiz = remove_atual(atual);
+            else{
+                if(ant->dir == atual)
+                    ant->dir = remove_atual(atual);
+                else
+                    ant->esq = remove_atual(atual);
+            }
+            return 1;
         }
-        return 1;
+        ant = atual;
+        if(valor>atual->info)
+            atual = atual->dir;
+        else
+            atual = atual->esq;
     }
-    ant = atual;
-    if (valor > atual->info)
-        atual = atual->dir;
-    else
-        atual = atual->esq;
+    return 0;
 }
 
 struct NO* remove_atual(struct NO* atual){
@@ -201,8 +206,19 @@ struct NO* remove_atual(struct NO* atual){
     free(atual);
     return no2;
 }
+int totalNO_ArvBin(ArvBin *raiz){
+    if (raiz == NULL)
+        return 0;
+    if(*raiz == NULL)
+        return 0;
+    int alt_esq = totalNO_ArvBin(&((*raiz)->esq));
+    int alt_dir = totalNO_ArvBin(&((*raiz)->dir));
+    return(alt_esq + alt_dir + 1);
+}
 
-struct NO* deleteIterative(ArvBin * root, int key)
+
+
+struct NO* remove_NO_Iterativo(ArvBin * root, int key)
 {
     struct NO * curr = root;
     struct NO* prev = NULL;
@@ -296,16 +312,6 @@ struct NO* deleteIterative(ArvBin * root, int key)
 }
 
 
-
-
-
-
-
-
-
-
-
-
 ArvBin* cria_ArvBinR(){ //já esta na forma interaiva
     ArvBin* raiz = (ArvBin*) malloc(sizeof(ArvBin));
     if(raiz != NULL)
@@ -315,3 +321,17 @@ ArvBin* cria_ArvBinR(){ //já esta na forma interaiva
 
 }
 
+
+bool busca_Iterativa(struct NO* raiz, int valor)
+{
+    while (raiz != NULL) {
+        if (valor > raiz->info) //passe a subarvore a direita como uma nova arvore //
+             raiz = raiz->dir;
+
+        else if (valor < raiz->info) // passe a subavore a esquerda como um nova arvore //
+            raiz = raiz->esq;
+        else
+            return 1;
+    }
+    return 0;
+}

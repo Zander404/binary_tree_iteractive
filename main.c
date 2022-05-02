@@ -10,9 +10,10 @@ int main() {
     for(int x = 0; x<3;x++){
         insere_ArvBin(arvore, x);
     };
-    deleteIterative(arvore, 2);
+
     printf("\n %i",consulta_ArvBin(arvore, 3));
     printf("\n %d",altura_ArvBin(arvore));
+
 
 
 
