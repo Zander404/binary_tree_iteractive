@@ -7,7 +7,7 @@ int main() {
     arvore = cria_ArvBin();
 
 
-    for(int x =0; x<3;x++){
+    for(int x = 0; x<3;x++){
         insere_ArvBin(arvore, x);
     };
     deleteIterative(arvore, 2);
