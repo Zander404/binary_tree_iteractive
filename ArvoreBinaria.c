@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include "ArvoreBinaria.h"
-#include "queue.h"
+
 
  struct NO{
     int info;
